@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Challenge 1</title>
+        <link href="styles.css" rel="stylesheet"/>
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+    </head>
+    <body class="container">
+        <header id="page-name" class="section-header">
+            <h1 class="main-title">Let’s discuss<br/> on something <em class="highlight">cool</em> together</h1>
+        </header>
+        
+        <address id="contact-us" class="section-address">
+            <ul class="contact-info">
+                <li class="contact">
+                    <img class="contact-image" src="Images/EnvelopeFill.svg" alt="email"/>
+                    <p class="contact-text">SaulDesign@gmail.com</p>
+                </li>
+                <li class="contact">
+                    <img class="contact-image" src="Images/TelephoneFill.svg" alt="phone"/>
+                    <p class="contact-text">+123 456 789</p>
+                </li>
+                <li class="contact">
+                    <img class="contact-image" src="Images/Point.svg" alt="address"/>
+                    <p class="contact-text">123 Street 456 House</p>
+                </li>
+            </ul>   
+        </address>
+        
+        <section id="sendamessage" class="section-content">
+            <form class="boxform" method="post">
+                <div>
+                    <h2 class="form-heading">I’m interested in...</h2>
+                    
+                    <fieldset class="option-list">
+                        <select id="options" name="interesses" class="custom-select" multiple>
+                            <option id="option-item-1" value="uiuxdesign">UI/UX design</option>
+                            <option id="option-item-2" value="webdesign">Web design</option>
+                            <option id="option-item-3" value="graphicdesign">Graphic design</option>
+                            <option id="option-item-4" value="designsystem">Design system</option>
+                            <option id="option-item-5" value="other">Other</option>
+                        </select>
+                    </fieldset>
+                    
+                    <fieldset class="message-form">
+                        <p class="form-field">
+                            <label class="input-label" for="name">Your Name</label>
+                            <input class="input-container" type="text" id="name" required name="name" autocomplete="off" placeholder="Your Name"/>
+                        </p>
+                        <p class="form-field">
+                            <label class="input-label" for="email">Your email</label>
+                            <input class="input-container" type="email" id="email" required name="email" autocomplete="off" placeholder="Your email"/>
+                        </p>
+                        <p class="form-field">
+                            <label class="input-label" for="message">Your message</label>
+                            <input class="input-container" type="text" id="message" name="message" rows="1" autocomplete="off" placeholder="Your message"/>
+                        </p>
+                    </fieldset>
+                     
+                </div>
+                <button id="submit-button" class="sendbutton" type="submit"><img class="icon-button" src="Images/Message.svg" alt="icon button"/>Send Message</button>
+            </form>
+        </section>
+        
+        <footer id="socialmedia" class="section-footer">
+            <ul class="social-media-links">
+                <li class="social-media-icons"><a href="https://pt-br.facebook.com"><img class="social-media-logo" src="Images/g18.svg" alt="facebook page" /></a></li>
+                <li class="social-media-icons"><a href="https://www.instagram.com"><img class="social-media-logo" src="Images/Instagram.svg" alt="instagram page" /></a></li>
+                <li class="social-media-icons"><a href="https://twitter.com"><img class="social-media-logo" src="Images/Vector.svg" alt="twitter page" /></a></li>
+            </ul>
+        </footer>
+        <script src="main.js"></script>
+    </body>
+</html>
