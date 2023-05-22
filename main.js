@@ -1,145 +1,83 @@
-class customSelect {
-    constructor(originalSelect) {
-        this.originalSelect = originalSelect;
-        this.customSelect = document.createElement("div");
-        this.customSelect.classList.add("select");
+const optionLabels = document.querySelectorAll('.option-label');
 
-        this.originalSelect.querySelectorAll("option").forEach(optionElement => {
-            const itemElement = document.createElement("div");
+optionLabels.forEach(optionLabel => {
+    const input = optionLabel.querySelector('.option-input');
 
-            itemElement.classList.add("select__item");
-            itemElement.textContent = optionElement.textContent;
-            this.customSelect.appendChild(itemElement);
+    input.addEventListener('change', () => {
+        input.checked ? optionLabel.classList.add('selected') : optionLabel.classList.remove('selected');
+    });
+});
 
-                if(optionElement.selected) {
-                    this._select(itemElement);
-                } else {
-                    this._deselect(itemElement);
-                }
+const checkboxes = document.querySelectorAll('.option-input');
 
-            itemElement.addEventListener("click", () => {
-                if (itemElement.classList.contains("select__item--selected")) {
-                    this._deselect(itemElement);
-                } else {
-                    this._select(itemElement);
-                }
+let selectedItems = [];
 
-                this.validateField();
-            });
-        });
+checkboxes.forEach(checkbox => {
+    checkbox.addEventListener('change', () => {
+        checkbox.checked ? selectedItems.push(checkbox.nextSibling.textContent.trim()) : (index => index !== -1 && selectedItems.splice(index, 1))(selectedItems.indexOf(checkbox.nextSibling.textContent.trim()));
+        console.log(selectedItems);
+    });
+});
 
-        this.originalSelect.insertAdjacentElement("afterend", this.customSelect);
-        this.originalSelect.style.display = "none";
-
-        this.validateField(); 
-    }
-
-    _select(itemElement) {
-        const index = Array.from(this.customSelect.children).indexOf(itemElement);
-
-        this.originalSelect.querySelectorAll("option")[index].selected = true;
-        itemElement.classList.add("select__item--selected");
-    }
-
-    _deselect(itemElement) {
-        const index = Array.from(this.customSelect.children).indexOf(itemElement);
-
-        this.originalSelect.querySelectorAll("option")[index].selected = false;
-        itemElement.classList.remove("select__item--selected");
-    }
-
-    validateField() {
-        const enteredName = document.getElementById("name").value;
-        const enteredEmail = document.getElementById("email").value;
-        const enteredMessage = document.getElementById("message").value;
-        const selectedOptions = this.getSelectedOptions();
-    
-        if (
-          enteredName.split(" ").length >= 2 &&
-          enteredEmail !== "" &&
-          enteredMessage.length >= 20 &&
-          selectedOptions.length > 0
-        ) {
-          document.getElementById("submit-button").disabled = false;
-        } else {
-          document.getElementById("submit-button").disabled = true;
-        }
-      }
-
-    getSelectedOptions() {
-        const selectedOptions = Array.from(this.originalSelect.options)
-            .filter(option => option.selected)
-            .map(option => option.value);
-
-        return selectedOptions;
-    }
-}
-
-function saveFormData() {
+function saveFormData(selectedItems) {
     const enteredName = document.getElementById("name").value;
     const enteredEmail = document.getElementById("email").value;
     const enteredMessage = document.getElementById("message").value;
-    const selectElement = document.querySelector(".custom-select");
-    const customSelectInstance = selectElement.customSelectInstance;
-    const selectedOptions = customSelectInstance.getSelectedOptions();
 
-    let formData = {
-    name: enteredName,
-    email: enteredEmail,
-    message: enteredMessage,
-    interests: selectedOptions,
-    };
+    const formData = {
+        name: enteredName,
+        email: enteredEmail,
+        message: enteredMessage,
+        interests: selectedItems,
+    }
 
     let formDataJson = JSON.stringify(formData);
-    localStorage.setItem("formData", formDataJson);
+    localStorage.setItem('formData', formDataJson);
 
-    alert("Dados do formulário salvos com sucesso!");
+    alert('Form data sucessfully saved!')
 
-    document.getElementById("name").value = '';
-    document.getElementById("email").value = '';
-    document.getElementById("message").value = '';
-    document.getElementById("submit-button").disabled = true;
+    checkboxes.forEach(checkbox => {
+        checkbox.checked = false;
+    })
 
-    customSelectInstance.customSelect
-        .querySelectorAll(".select__item--selected")
-        .forEach(itemElement => {
-            customSelectInstance._deselect(itemElement);
-        });
-    window.location.href = "showData.html";
+    optionLabels.forEach(optionLabel => {
+        optionLabel.classList.remove('selected');
+    });
+
+    selectedItems = [];
+
+    document.getElementById('name').value = '';
+    document.getElementById('email').value = '';
+    document.getElementById('message').value = '';
+    document.getElementById('submit-button').disabled = true;
+
+    window.open("showData.html", "_blank");
 }
 
 function validateForm() {
-    const enteredName = document.getElementById("name").value;
-    const enteredEmail = document.getElementById("email").value;
-    const enteredMessage = document.getElementById("message").value;
-    const selectElement = document.querySelector(".custom-select");
-    const customSelectInstance = selectElement.customSelectInstance;
-    const selectedOptions = customSelectInstance.getSelectedOptions();
+    const enteredName = document.getElementById('name').value;
+    const enteredEmail = document.getElementById('email').value;
+    const enteredMessage = document.getElementById('message').value;
+
+    const messageWithoutSpaces = enteredMessage.replace(/\s/g, "");
 
     const isValidEmail = validateEmail(enteredEmail);
 
-    if (enteredName.split(" ").length >= 2 && isValidEmail && enteredMessage.length >= 20 && selectedOptions.length > 0) {
-    document.getElementById("submit-button").disabled = false;
-    } else {
-    document.getElementById("submit-button").disabled = true;
-    }
-} 
-    
+    selectedItems.length >= 1 && enteredName.split(' ').length > 1 && isValidEmail && messageWithoutSpaces.length >= 20 ? document.getElementById('submit-button').disabled = false : document.getElementById('submit-button').disabled = true;
+}
+
 function validateEmail(email) {
     const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
     return emailRegex.test(email);
 }
 
-document.getElementById("submit-button").addEventListener("click", function (event) {
+
+document.getElementById('name').addEventListener('input', validateForm);
+document.getElementById('email').addEventListener('input', validateForm);
+document.getElementById('message').addEventListener('input', validateForm);
+document.getElementById('options').addEventListener('input', validateForm);
+
+document.getElementById('submit-button').addEventListener('click', function(event) {
     event.preventDefault();
-    saveFormData();
+    saveFormData(selectedItems);
 });
-
-document.querySelectorAll(".custom-select").forEach((selectElement) => {
-    const customSelectInstance = new customSelect(selectElement);
-    selectElement.customSelectInstance = customSelectInstance;
-});
-
-document.getElementById("name").addEventListener("input", validateForm);
-document.getElementById("email").addEventListener("input", validateForm);
-document.getElementById("message").addEventListener("input", validateForm);

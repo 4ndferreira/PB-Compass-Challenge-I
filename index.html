@@ -37,33 +37,45 @@
                 <div>
                     <h2 class="form-heading">I’m interested in...</h2>
                     
-                    <fieldset class="option-list">
-                        <select id="options" name="interesses" class="custom-select" multiple>
-                            <option id="option-item-1" value="uiuxdesign">UI/UX design</option>
-                            <option id="option-item-2" value="webdesign">Web design</option>
-                            <option id="option-item-3" value="graphicdesign">Graphic design</option>
-                            <option id="option-item-4" value="designsystem">Design system</option>
-                            <option id="option-item-5" value="other">Other</option>
-                        </select>
+                    <fieldset class="option-list" id="options">
+                        <label for="option-1" class="option-label">
+                            <input type="checkbox" id="option-1" class="option-input">
+                            UI/UX design
+                        </label>
+                        <label for="option-2" class="option-label">
+                            <input type="checkbox" id="option-2" class="option-input">
+                            Web design
+                        </label>
+                        <label for="option-3" class="option-label">
+                            <input type="checkbox" id="option-3" class="option-input">
+                            Graphic design
+                        </label>
+                        <label for="option-4" class="option-label">
+                            <input type="checkbox" id="option-4" class="option-input">
+                            Design system
+                        </label>
+                        <label for="option-5" class="option-label">
+                            <input type="checkbox" id="option-5" class="option-input">
+                            Other
+                        </label>
                     </fieldset>
                     
                     <fieldset class="message-form">
                         <p class="form-field">
                             <label class="input-label" for="name">Your Name</label>
-                            <input class="input-container" type="text" id="name" required name="name" autocomplete="off" placeholder="Your Name"/>
+                            <input class="input-container" type="text" id="name" autocomplete="off" placeholder="Your Name"/>
                         </p>
                         <p class="form-field">
                             <label class="input-label" for="email">Your email</label>
-                            <input class="input-container" type="email" id="email" required name="email" autocomplete="off" placeholder="Your email"/>
+                            <input class="input-container" type="email" id="email" autocomplete="off" placeholder="Your email"/>
                         </p>
                         <p class="form-field">
                             <label class="input-label" for="message">Your message</label>
                             <input class="input-container" type="text" id="message" name="message" rows="1" autocomplete="off" placeholder="Your message"/>
                         </p>
                     </fieldset>
-                     
                 </div>
-                <button id="submit-button" class="sendbutton" type="submit"><img class="icon-button" src="Images/Message.svg" alt="icon button"/>Send Message</button>
+                <button id="submit-button" class="sendbutton" type="submit" disabled><img class="icon-button" src="Images/Message.svg" alt="icon button"/>Send Message</button>
             </form>
         </section>
         
