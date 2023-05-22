@@ -36,22 +36,8 @@ function saveFormData(selectedItems) {
 
     alert('Form data sucessfully saved!')
 
-    checkboxes.forEach(checkbox => {
-        checkbox.checked = false;
-    })
-
-    optionLabels.forEach(optionLabel => {
-        optionLabel.classList.remove('selected');
-    });
-
-    selectedItems = [];
-
-    document.getElementById('name').value = '';
-    document.getElementById('email').value = '';
-    document.getElementById('message').value = '';
-    document.getElementById('submit-button').disabled = true;
-
     window.open("showData.html", "_blank");
+    window.location.reload();
 }
 
 function validateForm() {
