@@ -24,7 +24,7 @@
 .section-content {
     grid-column: 4 / 5;
     grid-row: 2 / span 3;
-    background-color: white;
+    background-color: #EEEEEE;
     padding: 2.1rem;
     border-radius: 1rem;
 }
@@ -40,7 +40,7 @@
     font-family: 'Poppins', sans-serif;
     font-weight: 700;
     font-size: 2.3rem;
-    color: white;
+    color: #EEEEEE;
     margin: 0;
 }
 
@@ -155,13 +155,13 @@
 }
 
 .option-label.selected {
-    color: white;
+    color: #EEEEEE;
     background-color: #A91079;
     border: #A91079;
 }
 
 .option-input:checked + .option-label {
-    color: white;
+    color: #EEEEEE;
     background-color: #A91079;
 }
 
