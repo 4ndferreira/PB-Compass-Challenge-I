@@ -1,6 +1,7 @@
+//Function to style checkbox after its selection
 const checkboxes = document.querySelectorAll('.option-input');
 
-let selectedItems = [];
+const selectedItems = [];
 
 checkboxes.forEach(checkbox => {
     checkbox.addEventListener('change', () => {
