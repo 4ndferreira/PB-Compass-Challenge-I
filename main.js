@@ -1,54 +1,48 @@
-let typedName, typedEmail, typedMessage;
+//Declaration of global variables
+const typedName = document.getElementById("name");
+const typedEmail = document.getElementById("email");
+const typedMessage = document.getElementById("message");
 
-document.getElementById('name').addEventListener('input', validateForm);
-document.getElementById('email').addEventListener('input', validateForm);
-document.getElementById('message').addEventListener('input', validateForm);
-document.getElementById('options').addEventListener('change', validateForm);
+//Email validation function
+const validateEmail = email => /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email) ? true : false;
 
-function validateEmail(email) {
-    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-    return emailRegex.test(email);
-}
+//Function to activate the form submit button
+const validateForm = _ => {
+    const isValidEmail = validateEmail(typedEmail.value);
 
-function validateForm() {
-    typedName = document.getElementById("name").value;
-    typedEmail = document.getElementById("email").value;
-    typedMessage = document.getElementById("message").value;
-
-    const messageWithoutSpaces = typedMessage.replace(/\s/g, "");
-
-    const isValidEmail = validateEmail(typedEmail);
-
-    selectedItems.length >= 1 && 
-    typedName.trim().split(' ').length > 1 && 
+    document.getElementById('submit-button').disabled =!
+    (selectedItems.length >= 1 && 
+    typedName.value.trim().split(' ').length >= 2 && 
     isValidEmail && 
-    messageWithoutSpaces.length >= 20 
-    ? document.getElementById('submit-button').disabled = false 
-    : document.getElementById('submit-button').disabled = true;
-}
+    typedMessage.value.replace(/\s/g, "").length >= 20) 
+};
 
-document.getElementById('submit-button').addEventListener('click', function(event) {
+//Add event listeners for real-time button activation
+typedName.addEventListener('input', validateForm);
+typedEmail.addEventListener('input', validateForm);
+typedMessage.addEventListener('input', validateForm);
+document.getElementById("options").addEventListener('change', validateForm);
+
+//Add event listener to save form after clicking submit button
+document.getElementById('submit-button').addEventListener('click', event => {
     event.preventDefault();
     saveFormData();
 });
 
-function saveFormData() {
-    typedName = document.getElementById("name").value;
-    typedEmail = document.getElementById("email").value;
-    typedMessage = document.getElementById("message").value;
-    
+//Function to save form data to localstorage
+const saveFormData = _ => {
     const formData = {
-        name: typedName,
-        email: typedEmail,
-        message: typedMessage,
+        name: typedName.value,
+        email: typedEmail.value,
+        message: typedMessage.value,
         interests: selectedItems,
     };
 
     let formDataJson = JSON.stringify(formData);
     localStorage.setItem('formData', formDataJson);
 
-    alert('Form data sucessfully saved!')
+    alert('Form data sucessfully saved!');
 
     window.open("data-display.html", "_blank");
     window.location.reload();
-}
+};
