@@ -33,48 +33,52 @@
         </address>
         
         <section id="sendamessage" class="section-content">
-            <form class="boxform" method="post">
-                <div>
-                    <h2 class="form-heading">I’m interested in...</h2>
-                    
-                    <fieldset class="option-list" id="options">
-                        <label for="option-1" class="option-label">
-                            <input type="checkbox" id="option-1" class="option-input">
-                            UI/UX design
-                        </label>
-                        <label for="option-2" class="option-label">
-                            <input type="checkbox" id="option-2" class="option-input">
-                            Web design
-                        </label>
-                        <label for="option-3" class="option-label">
-                            <input type="checkbox" id="option-3" class="option-input">
-                            Graphic design
-                        </label>
-                        <label for="option-4" class="option-label">
-                            <input type="checkbox" id="option-4" class="option-input">
-                            Design system
-                        </label>
-                        <label for="option-5" class="option-label">
-                            <input type="checkbox" id="option-5" class="option-input">
-                            Other
-                        </label>
-                    </fieldset>
-                    
-                    <fieldset class="message-form">
-                        <p class="form-field">
-                            <label class="input-label" for="name">Your Name</label>
-                            <input class="input-container" type="text" id="name" autocomplete="off" placeholder="Your Name"/>
-                        </p>
-                        <p class="form-field">
-                            <label class="input-label" for="email">Your email</label>
-                            <input class="input-container" type="email" id="email" autocomplete="off" placeholder="Your email"/>
-                        </p>
-                        <p class="form-field">
-                            <label class="input-label" for="message">Your message</label>
-                            <input class="input-container" type="text" id="message" name="message" rows="1" autocomplete="off" placeholder="Your message"/>
-                        </p>
-                    </fieldset>
-                </div>
+            <form class="boxform" method="post" id="form">    
+                <h2 class="form-heading">I’m interested in...</h2>
+                
+                <fieldset class="option-list" id="options">
+                    <label for="option-1" class="option-label flex-option-1">
+                        <input type="checkbox" id="option-1" class="option-input">
+                        UI/UX design
+                    </label>
+                    <label for="option-2" class="option-label flex-option-1">
+                        <input type="checkbox" id="option-2" class="option-input">
+                        Web design
+                    </label>
+                    <label for="option-3" class="option-label flex-option-1">
+                        <input type="checkbox" id="option-3" class="option-input">
+                        Graphic design
+                    </label>
+                    <label for="option-4" class="option-label flex-option-2">
+                        <input type="checkbox" id="option-4" class="option-input">
+                        Design system
+                    </label>
+                    <label for="option-5" class="option-label flex-option-3">
+                        <input type="checkbox" id="option-5" class="option-input">
+                        Other
+                    </label>
+                </fieldset>
+                
+                <fieldset class="message-form">
+                    <p class="form-field">
+                        <label class="input-label" for="name">Your Name</label>
+                        <input class="input-container" type="text" id="name" autocomplete="off" placeholder="Your Name"/>
+                        <span class="error-icon" id="error-icon-1"></span>
+                    </p>
+                    <p class="hint" id="hint-1">Please provide first and last name!</p>
+                    <p class="form-field">
+                        <label class="input-label" for="email">Your email</label>
+                        <input class="input-container" type="email" id="email" autocomplete="off" placeholder="Your email"/>
+                        <span class="error-icon" id="error-icon-2"></span>
+                    </p>
+                    <p class="hint" id="hint-2">Please enter a valid email!</p>
+                    <p class="form-field">
+                        <label class="input-label" for="message">Your message</label>
+                        <input class="input-container" type="text" id="message" name="message" rows="1" autocomplete="off" placeholder="Your message"/>
+                        <span class="error-icon" id="error-icon-3"></span>
+                    </p>
+                    <p class="hint" id="hint-3">Message must be at least 20 characters!</p>
+                </fieldset>   
                 <button id="submit-button" class="sendbutton" type="submit" disabled><img class="icon-button" src="Images/Message.svg" alt="icon button"/>Send Message</button>
             </form>
         </section>
@@ -87,6 +91,7 @@
             </ul>
         </footer>
         <script src="main.js"></script>
+        <script src="validate-input-field.js"></script>
         <script src="checkbox-styling.js"></script>
         <script src="selected-items.js"></script>
     </body>
