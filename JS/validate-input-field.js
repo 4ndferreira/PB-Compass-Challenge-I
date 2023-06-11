@@ -1,3 +1,4 @@
+"use strict";
 //Function for Individual Validation of Filling Fields
 /*const validateInputField = (typedInfo, errorIcon, errorInfo, isValidInfo) => {
     typedInfo.addEventListener('blur', () => {
