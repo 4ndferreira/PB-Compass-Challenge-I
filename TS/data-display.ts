@@ -1,16 +1,29 @@
 //Retrieve data from localstorage and display it in a new page
 document.addEventListener('DOMContentLoaded', () => {
   const showSavedData = () => {
-    const formDataJson: string = localStorage.getItem('formData');
+    const currentDataJson = localStorage.getItem('formData');
+    const currentData: FormDataType[] = (currentDataJson ? JSON.parse(currentDataJson) : []);
+    
+    const container = document.getElementById('saved-data') as HTMLUListElement;
 
-    if (formDataJson) {
-      const formData: FormDataType = JSON.parse(formDataJson);
+    currentData.forEach((formData, index) =>{
+      const { name, email, message, interests } = formData;
+      const formDataUl = document.createElement('li');
+      
+      const createLineText = (elementType: string, text: string) => {
+        const element = document.createElement(elementType);
+        element.textContent = text;
+        formDataUl.appendChild(element);
+      };
 
-      document.getElementById('name')!.textContent = formData.name;
-      document.getElementById('email')!.textContent = formData.email;
-      document.getElementById('message')!.textContent = formData.message;
-      document.getElementById('interests')!.textContent = formData.interests.join(', ');
-    }
+      createLineText('h2', 'Submitter ' + (index + 1));
+      createLineText('p', 'Name: ' + name);
+      createLineText('p', 'Email: ' + email);
+      createLineText('p', 'Message: ' + message);
+      createLineText('p', 'Interests: ' + interests.join(','));
+
+      container.appendChild(formDataUl);
+    });
   };
   showSavedData();
 });
