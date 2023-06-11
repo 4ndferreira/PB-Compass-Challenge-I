@@ -1,40 +1,35 @@
+"use strict";
 //Declaration of global variables
-var typedName = document.getElementById("name");
-var typedEmail = document.getElementById("email");
-var typedMessage = document.getElementById("message");
-var submitButton = document.getElementById('submit-button');
-var formOptions = document.getElementById("options");
+const typedName = document.getElementById("name");
+const typedEmail = document.getElementById("email");
+const typedMessage = document.getElementById("message");
+const submitButton = document.getElementById('submit-button');
+const formOptions = document.getElementById("options");
 //Function for Individual Validation of Filling Fields
-var validateInputField = function (typedData, errorIcon, errorHint, isValidData) {
-    typedData.addEventListener('blur', function () {
-        return isValidData(typedData)
-            ? typedData.classList.remove('error')
-            : (typedData.classList.add('error')
-                , errorIcon.style.visibility = 'visible'
-                , errorHint.style.visibility = 'visible');
-    });
-    typedData.addEventListener('focus', function () {
+const validateInputField = (typedData, n, isValidData) => {
+    const errorIcon = document.getElementById('hint-' + n);
+    const errorHint = document.getElementById('error-icon-' + n);
+    typedData.addEventListener('blur', () => isValidData(typedData)
+        ? typedData.classList.remove('error')
+        : (typedData.classList.add('error')
+            , errorIcon.style.visibility = 'visible'
+            , errorHint.style.visibility = 'visible'));
+    typedData.addEventListener('focus', () => {
         errorIcon.style.visibility = 'hidden';
         errorHint.style.visibility = 'hidden';
     });
 };
 //Name Check
-var errorName = document.getElementById('hint-1');
-var errorIconName = document.getElementById('error-icon-1');
-var isValidName = function (typedData) { return typedData.value.trim().split(' ').length >= 2; };
-validateInputField(typedName, errorIconName, errorName, isValidName);
+const isValidName = (typedData) => typedData.value.trim().split(' ').length >= 2;
+validateInputField(typedName, 1, isValidName);
 //Email Check
-var errorEmail = document.getElementById('hint-2');
-var errorIconEmail = document.getElementById('error-icon-2');
-var isValidEmail = function (typedData) { return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(typedData.value); };
-validateInputField(typedEmail, errorIconEmail, errorEmail, isValidEmail);
+const isValidEmail = (typedData) => /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(typedData.value);
+validateInputField(typedEmail, 2, isValidEmail);
 //Message Check
-var errorMessage = document.getElementById('hint-3');
-var errorIconMessage = document.getElementById('error-icon-3');
-var isValidMessage = function (typedData) { return typedData.value.replace(/\s/g, "").length >= 20; };
-validateInputField(typedMessage, errorIconMessage, errorMessage, isValidMessage);
+const isValidMessage = (typedData) => typedData.value.replace(/\s/g, "").length >= 20;
+validateInputField(typedMessage, 3, isValidMessage);
 //Function to activate the form submit button
-var validateForm = function () {
+const validateForm = () => {
     submitButton.disabled = !(selectedItems.length >= 1 &&
         isValidName(typedName) &&
         isValidEmail(typedEmail) &&
@@ -46,50 +41,27 @@ typedEmail.addEventListener('input', validateForm);
 typedMessage.addEventListener('input', validateForm);
 formOptions.addEventListener('change', validateForm);
 //Function to save form data to localstorage
-var saveFormData = function () {
+const saveFormData = () => {
+    //There is data in local storage?
+    const currentDataJson = localStorage.getItem('formData');
+    let currentData = (currentDataJson ? JSON.parse(currentDataJson) : []);
     //Creates an object with form data
-    var formData = {
+    const formData = {
         name: typedName.value,
         email: typedEmail.value,
         message: typedMessage.value,
         interests: selectedItems
     };
-    localStorage.setItem('formData', JSON.stringify(formData));
+    //Add the created object to the existing data array
+    currentData = [formData, ...currentData];
+    //Save the updated array to localStorage
+    localStorage.setItem('formData', JSON.stringify(currentData));
     alert('Form data sucessfully saved!');
     window.open("data-display.html", "_blank");
     window.location.reload();
 };
 //Add event listener to save form after clicking submit button
-submitButton.addEventListener('click', function (event) {
+submitButton.addEventListener('click', event => {
     event.preventDefault();
     saveFormData();
 });
-/*
-//Function to save form data to localstorage
-const saveFormData = () => {
-  //There is data in local storage?
-  const currentDataJson: string = localStorage.getItem('formData');
-  const currentData: object[] = (currentDataJson ? [JSON.parse(currentDataJson)] : []);
-  //Creates an object with form data
-  const newFormData = {
-    name: typedName.value,
-    email: typedEmail.value,
-    message: typedMessage.value,
-    interests: selectedItems
-  };
-  //Add the created object to the existing data array
-  currentData.push(newFormData);
-  //Save the updated array to localStorage
-  localStorage.setItem('formData', JSON.stringify(currentData));
-  
-  alert('Form data sucessfully saved!');
-  
-  window.open("data-display.html", "_blank");
-  //window.location.reload();
-};
-
-//Add event listener to save form after clicking submit button
-submitButton.addEventListener('click', event => {
-  event.preventDefault();
-  saveFormData();
-});*/ 
