@@ -1,11 +1,15 @@
+"use strict";
 //Function to style checkbox after its selection
-var checkboxes = document.querySelectorAll('.option-input');
-var selectedItems = [];
-checkboxes.forEach(function (checkbox) {
-    checkbox.addEventListener('change', function () {
+const checkboxes = document.querySelectorAll('.option-input');
+const selectedItems = [];
+checkboxes.forEach(checkbox => {
+    checkbox.addEventListener('change', () => {
+        const checkboxItem = checkbox.nextSibling;
+        const checkboxContent = checkboxItem && checkboxItem.textContent;
         checkbox.checked
-            ? selectedItems.push(checkbox.nextSibling.textContent.trim())
-            : (function (index) { return index !== -1 && selectedItems.splice(index, 1); })(selectedItems.indexOf(checkbox.nextSibling.textContent.trim()));
+            ? checkboxContent && selectedItems.push(checkboxContent.trim())
+            : ((index) => index !== -1 && selectedItems.splice(index, 1)),
+            checkboxContent && (selectedItems.indexOf(checkboxContent.trim()));
         console.log(selectedItems);
     });
 });

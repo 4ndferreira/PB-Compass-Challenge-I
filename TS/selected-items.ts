@@ -5,10 +5,12 @@ const selectedItems: string[] = [];
 
 checkboxes.forEach(checkbox => {
   checkbox.addEventListener('change', () => {
-    checkbox.checked 
-    ? selectedItems.push(checkbox.nextSibling!.textContent!.trim()) 
-    : (index => index !== -1 && selectedItems.splice(index, 1))
-      (selectedItems.indexOf(checkbox.nextSibling!.textContent!.trim()));
+    const checkboxItem = checkbox.nextSibling;
+    const checkboxContent = checkboxItem && checkboxItem.textContent;
+    checkbox.checked
+    ? checkboxContent && selectedItems.push(checkboxContent.trim()) 
+    : ((index: number) => index !== -1 && selectedItems.splice(index, 1)),
+    checkboxContent && (selectedItems.indexOf(checkboxContent.trim()));
     
     console.log(selectedItems);
   });
