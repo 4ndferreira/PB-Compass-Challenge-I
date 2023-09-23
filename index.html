@@ -1,91 +1,97 @@
 <!DOCTYPE html>
 <html lang="en">
-    <head>
-        <meta charset="UTF-8">
-        <meta http-equiv="X-UA-Compatible" content="IE=edge">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>Challenge 1</title>
-        <link href="styles.css" rel="stylesheet"/>
-        <link rel="preconnect" href="https://fonts.googleapis.com">
-        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-        <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
-    </head>
-    <body class="container">
-        <header id="page-name" class="section-header">
-            <h1 class="main-title">Let’s discuss<br/> on something <em class="highlight">cool</em> together</h1>
-        </header>
+  <head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Challenge 1</title>
+    <link href="styles.css" rel="stylesheet"/>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+  </head>
+  <body class="container">
+    <header id="page-name" class="section-header">
+      <h1 class="main-title">Let’s discuss<br/> on something <em class="highlight">cool</em> together</h1>
+    </header>
+      
+    <address id="contact-us" class="section-address">
+      <ul class="contact-info">
+        <li class="contact">
+          <img class="contact-image" src="Images/EnvelopeFill.svg" alt="email"/>
+          <p class="contact-text">SaulDesign@gmail.com</p>
+        </li>
+        <li class="contact">
+          <img class="contact-image" src="Images/TelephoneFill.svg" alt="phone"/>
+          <p class="contact-text">+123 456 789</p>
+        </li>
+        <li class="contact">
+          <img class="contact-image" src="Images/Point.svg" alt="address"/>
+          <p class="contact-text">123 Street 456 House</p>
+        </li>
+      </ul>   
+    </address>
+      
+    <section id="sendamessage" class="section-content">
+      <form class="boxform" method="post" id="form">    
+        <h2 class="form-heading">I’m interested in...</h2>
         
-        <address id="contact-us" class="section-address">
-            <ul class="contact-info">
-                <li class="contact">
-                    <img class="contact-image" src="Images/EnvelopeFill.svg" alt="email"/>
-                    <p class="contact-text">SaulDesign@gmail.com</p>
-                </li>
-                <li class="contact">
-                    <img class="contact-image" src="Images/TelephoneFill.svg" alt="phone"/>
-                    <p class="contact-text">+123 456 789</p>
-                </li>
-                <li class="contact">
-                    <img class="contact-image" src="Images/Point.svg" alt="address"/>
-                    <p class="contact-text">123 Street 456 House</p>
-                </li>
-            </ul>   
-        </address>
+        <fieldset class="option-list" id="options">
+          <label for="option-1" class="option-label flex-option-1">
+            <input type="checkbox" id="option-1" class="option-input">
+            UI/UX design
+          </label>
+          <label for="option-2" class="option-label flex-option-1">
+            <input type="checkbox" id="option-2" class="option-input">
+            Web design
+          </label>
+          <label for="option-3" class="option-label flex-option-1">
+            <input type="checkbox" id="option-3" class="option-input">
+            Graphic design
+          </label>
+          <label for="option-4" class="option-label flex-option-2">
+            <input type="checkbox" id="option-4" class="option-input">
+            Design system
+          </label>
+          <label for="option-5" class="option-label flex-option-3">
+            <input type="checkbox" id="option-5" class="option-input">
+            Other
+          </label>
+        </fieldset>
         
-        <section id="sendamessage" class="section-content">
-            <form class="boxform" method="post">
-                <div>
-                    <h2 class="form-heading">I’m interested in...</h2>
-                    
-                    <fieldset class="option-list" id="options">
-                        <label for="option-1" class="option-label">
-                            <input type="checkbox" id="option-1" class="option-input">
-                            UI/UX design
-                        </label>
-                        <label for="option-2" class="option-label">
-                            <input type="checkbox" id="option-2" class="option-input">
-                            Web design
-                        </label>
-                        <label for="option-3" class="option-label">
-                            <input type="checkbox" id="option-3" class="option-input">
-                            Graphic design
-                        </label>
-                        <label for="option-4" class="option-label">
-                            <input type="checkbox" id="option-4" class="option-input">
-                            Design system
-                        </label>
-                        <label for="option-5" class="option-label">
-                            <input type="checkbox" id="option-5" class="option-input">
-                            Other
-                        </label>
-                    </fieldset>
-                    
-                    <fieldset class="message-form">
-                        <p class="form-field">
-                            <label class="input-label" for="name">Your Name</label>
-                            <input class="input-container" type="text" id="name" autocomplete="off" placeholder="Your Name"/>
-                        </p>
-                        <p class="form-field">
-                            <label class="input-label" for="email">Your email</label>
-                            <input class="input-container" type="email" id="email" autocomplete="off" placeholder="Your email"/>
-                        </p>
-                        <p class="form-field">
-                            <label class="input-label" for="message">Your message</label>
-                            <input class="input-container" type="text" id="message" name="message" rows="1" autocomplete="off" placeholder="Your message"/>
-                        </p>
-                    </fieldset>
-                </div>
-                <button id="submit-button" class="sendbutton" type="submit" disabled><img class="icon-button" src="Images/Message.svg" alt="icon button"/>Send Message</button>
-            </form>
-        </section>
-        
-        <footer id="socialmedia" class="section-footer">
-            <ul class="social-media-links">
-                <li class="social-media-icons"><a href="https://pt-br.facebook.com"><img class="social-media-logo" src="Images/g18.svg" alt="facebook page" /></a></li>
-                <li class="social-media-icons"><a href="https://www.instagram.com"><img class="social-media-logo" src="Images/Instagram.svg" alt="instagram page" /></a></li>
-                <li class="social-media-icons"><a href="https://twitter.com"><img class="social-media-logo" src="Images/Vector.svg" alt="twitter page" /></a></li>
-            </ul>
-        </footer>
-        <script src="main.js"></script>
-    </body>
+        <fieldset class="message-form">
+          <p class="form-field">
+            <label class="input-label" for="name">Your Name</label>
+            <input class="input-container" type="text" id="name" autocomplete="off" placeholder="Your Name"/>
+            <span class="error-icon" id="error-icon-1"></span>
+          </p>
+          <p class="hint" id="hint-1">Please provide first and last name!</p>
+          <p class="form-field">
+            <label class="input-label" for="email">Your email</label>
+            <input class="input-container" type="email" id="email" autocomplete="off" placeholder="Your email"/>
+            <span class="error-icon" id="error-icon-2"></span>
+          </p>
+          <p class="hint" id="hint-2">Please enter a valid email!</p>
+          <p class="form-field">
+            <label class="input-label" for="message">Your message</label>
+            <input class="input-container" type="text" id="message" name="message" rows="1" autocomplete="off" placeholder="Your message"/>
+            <span class="error-icon" id="error-icon-3"></span>
+          </p>
+          <p class="hint" id="hint-3">Message must be at least 20 characters!</p>
+        </fieldset>   
+        <button id="submit-button" class="sendbutton" type="submit" disabled><img class="icon-button" src="Images/Message.svg" alt="icon button"/>Send Message</button>
+      </form>
+    </section>                    
+      
+    <footer id="socialmedia" class="section-footer">
+      <ul class="social-media-links">
+        <li class="social-media-icons"><a href="https://pt-br.facebook.com"><img class="social-media-logo" src="Images/g18.svg" alt="facebook page" /></a></li>
+        <li class="social-media-icons"><a href="https://www.instagram.com"><img class="social-media-logo" src="Images/Instagram.svg" alt="instagram page" /></a></li>
+        <li class="social-media-icons"><a href="https://twitter.com"><img class="social-media-logo" src="Images/Vector.svg" alt="twitter page" /></a></li>
+      </ul>
+    </footer>
+    <script src="JS/checkbox-styling.js"></script>
+    <script src="JS/selected-items.js"></script>
+    <script src="JS/main.js"></script>
+  </body>
 </html>
